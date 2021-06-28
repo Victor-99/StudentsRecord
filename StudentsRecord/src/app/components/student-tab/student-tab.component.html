@@ -1,0 +1,15 @@
+<div class="row hidden-md-up">
+  <div class="col-md-4 my-4" style="width: 18rem;" *ngFor="let stud of students">
+  <div class="card">
+      <div class="card-block"student="stud">
+          <div class="card-header">{{stud.Name}}</div>
+          <div class="card-body Studnt" [routerLink]="['/',stud.RollNo]">
+            <h5 class="card-title">Roll Number: {{stud.RollNo}}</h5>
+            <p class="card-text">Marks Scored: {{stud.Hindi+stud.English+stud.Mathematics+stud.Science+stud.PhE}}</p>
+            <p class="card-text">Percentage: {{(stud.Hindi+stud.English+stud.Mathematics+stud.Science+stud.PhE)/5}}</p>
+          </div>
+          <div class="card-footer">Result: Pass</div>
+        </div>
+  </div>
+</div>
+</div>

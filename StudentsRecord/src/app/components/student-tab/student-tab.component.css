@@ -1,0 +1,8 @@
+.card{
+    border-radius: 25px;
+    text-align: center;
+}
+
+.Studnt:hover{
+    background-color:powderblue
+}

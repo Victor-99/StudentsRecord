@@ -1,0 +1,30 @@
+@keyframes logo-animation{
+    from{
+        color: slateblue;
+        outline: red;
+        outline-width: 5px;
+        outline-style: double;
+    }
+    to{
+        color:red;
+        outline:slateblue;
+        outline-width: 5px;
+        outline-style: double;
+    }
+}
+
+.mycss{
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right:20px;
+}
+
+.logo{
+    text-align: center;
+    color: slateblue;
+    animation-duration: 3s;
+    animation-name: logo-animation;
+    animation-iteration-count: infinite; 
+    animation-direction: alternate;
+
+}

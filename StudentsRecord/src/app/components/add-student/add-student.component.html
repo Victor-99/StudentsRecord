@@ -1,0 +1,50 @@
+<form #formData="ngForm" (ngSubmit)="onSubmit(formData.value)">
+    '<div class="mb-3">
+        <label for="RollNo" class="form-group">
+            Enter RollNo
+        </label>
+        <input required ngModel name="RollNo" #RollNo="ngModel" type="number" id="RollNo" class="form-control" min=0>
+        <div class="alert alert-danger" *ngIf="RollNo.touched && !RollNo.valid">Cannot be empty</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="Name" class="form-group">
+            Enter Name
+        </label>
+        <input required ngModel name="Name" #Name="ngModel" type="text" id="Name" class="form-control">
+        <div class="alert alert-danger" *ngIf="Name.touched && !Name.valid">Cannot be empty</div>
+    </div>
+
+    <div class="mb-3"  class="form-group">
+        <label for="Hindi">
+            Enter Hindi marks
+        </label>
+        <input required ngModel name="Hindi" #Hindi="ngModel" type="number" id="Hindi" class="form-control" min=0 max=100>
+        <div class="alert alert-danger" *ngIf="Hindi.touched && !Hindi.valid">Cannot be empty</div>
+
+        <label for="English" class="form-group">
+            Enter English marks
+        </label>
+        <input required ngModel name="English" #English="ngModel" type="number" id="English" class="form-control" min=0 max=100>
+        <div class="alert alert-danger" *ngIf="English.touched && !English.valid">Cannot be empty</div>
+
+        <label for="Mathematics"  class="form-group">
+            Enter Mathematics marks
+        </label>
+        <input required ngModel name="Mathematics" #Mathematics="ngModel" type="number" id="Mathematics" class="form-control" min=0 max=100>
+        <div class="alert alert-danger" *ngIf="Mathematics.touched && !Mathematics.valid">Cannot be empty</div>
+
+        <label for="Science"  class="form-group">
+            Enter Science marks
+        </label>
+        <input required ngModel name="Science" type="number" #Science="ngModel" id="Science" class="form-control" min=0 max=100>
+        <div class="alert alert-danger" *ngIf="Science.touched && !Science.valid">Cannot be empty</div>
+
+        <label for="PhE" class="form-group">
+            Enter PhE marks
+        </label>
+        <input required ngModel name="PhE" type="number" #PhE="ngModel" id="PhE" class="form-control" min=0 max=100>
+        <div class="alert alert-danger" *ngIf="PhE.touched && !PhE.valid">Cannot be empty</div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Add">
+</form>
