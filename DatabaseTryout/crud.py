@@ -26,9 +26,12 @@ def updateData(Userid:int,data:schemas.StudentTemplate,db:Session):
     if not legal:
         raise HTTPException(status_code=404,detail="Cannot be updated. Roll Number does not exists")
     db_Item=models.Student(**data.dict())
-    print(db_Item.Name)
+    db.query(models.Student).filter(models.Student.RollNo==Userid).update(data.dict())
 
-    #db.query(models.Student).filter(models.Student.RollNo==Userid).update(db_Item)
+    #for (key,value) in data.dict().items():
+    #    if key=="RollNo":
+    #        continue
+    #    setattr(legal,key,value)
     db.commit()
 
 def deleteData(id:int,db:Session):
