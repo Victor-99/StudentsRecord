@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { StudentDetailsService } from '../../Services/student-details.service';
@@ -12,32 +12,36 @@ import { Student } from '../../../StudentInterface';
   styleUrls: ['./student-details.component.css']
 })
 export class StudentDetailsComponent implements OnInit {
-  x:number;
-  marks:number;
-  percent:number;
+  x: number;
+  marks: number;
+  percent: number;
   stud: Student;
-  constructor(private activatedRoute: ActivatedRoute,private router:Router, private getService: StudentDetailsService) { }
+  resp:any;
+  data:any;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private getService: StudentDetailsService) { }
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params)=>{
-      this.x=Number(params.get("id"));
+    this.activatedRoute.paramMap.subscribe((params) => {
+      this.x = Number(params.get("id"));
     })
-    this.getService.getById(this.x)
-      .subscribe((student) => { this.stud = student },error=>{
-        alert(error.error.detail);
-      })
-      
-      
+    this.resp=this.getService.getByIdAsync(this.x);
+      //.subscribe((student) => { this.stud = student }, error => {
+      //  alert(error.error.detail);
+      //})
+
+      console.log(this.resp);
+
+
   }
 
-  
+
   deleteDetails() {
-    this.getService.removeData(this.x).subscribe(()=>{
+    this.getService.removeData(this.x).subscribe(() => {
       alert("The student has been deleted. Redirecting to home page");
       this.router.navigate(['']);
-    },error=>{
+    }, error => {
       alert(error.error.detail);
     });
-      
+
 
   }
 }

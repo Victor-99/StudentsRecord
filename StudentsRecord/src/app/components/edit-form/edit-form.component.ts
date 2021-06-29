@@ -16,7 +16,7 @@ export class EditFormComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params)=>{this.id=Number(params.get("id"))})
     this.dataService.getById(this.id)
-    .subscribe(async(student)=>{this.dataKnown=student},error=>{
+    .subscribe((student)=>{this.dataKnown=student},error=>{
       alert(error.error.detail)
     });
     
