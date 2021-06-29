@@ -12,14 +12,20 @@ import { Router } from '@angular/router';
 })
 export class AddStudentComponent implements OnInit {
 
+
+  errorMsg:any;
   constructor(private postData:StudentDetailsService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(data:Student){
-    this.postData.postData(data).subscribe();
-    alert("Adding data");
-    this.router.navigate(['']);
+    this.postData.postData(data).subscribe(()=>{
+      alert("Data Added successfully");
+      this.router.navigate(['',data.RollNo]);
+    },error=>{
+      alert(error.error.detail)
+    });
+    
   }
 }

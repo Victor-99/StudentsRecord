@@ -46,7 +46,7 @@ async def MarksById(id:int,db:Session=Depends(getDb)):
 def postMarks(data:schemas.StudentTemplate,db:Session=Depends(getDb)):
     return crud.newData(data,db)
 
-@app.put('/{id}')
+@app.put('/edit/{id}')
 def changeData(id:int,data:schemas.StudentTemplate,db:Session=Depends(getDb)):
     return crud.updateData(id,data,db)
 

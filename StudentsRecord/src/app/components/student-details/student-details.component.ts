@@ -5,6 +5,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { StudentDetailsService } from '../../Services/student-details.service';
 import { Student } from '../../../StudentInterface';
 
+
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
@@ -21,20 +22,22 @@ export class StudentDetailsComponent implements OnInit {
       this.x=Number(params.get("id"));
     })
     this.getService.getById(this.x)
-      .subscribe((student) => { this.stud = student });
-      this.marks=this.stud.Hindi+this.stud.English+this.stud.Mathematics+this.stud.Science+this.stud.PhE;
-      this.percent=this.marks/5;
+      .subscribe((student) => { this.stud = student },error=>{
+        alert(error.error.detail);
+      })
+      
+      
   }
 
   
-  editDetails() {
-
-  }
-
   deleteDetails() {
-    this.getService.removeData(this.x).subscribe();
-    alert("The student has been deleted. Redirecting to home page");
-    this.router.navigate(['']);  
+    this.getService.removeData(this.x).subscribe(()=>{
+      alert("The student has been deleted. Redirecting to home page");
+      this.router.navigate(['']);
+    },error=>{
+      alert(error.error.detail);
+    });
+      
 
   }
 }

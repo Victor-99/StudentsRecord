@@ -44,7 +44,7 @@
       </tbody>
     </table>
 
-      <button class="btn btn-primary" (click)="editDetails()">Edit</button>
+      <button class="btn btn-primary" editData="stud" [routerLink]="['/edit',stud.RollNo]" [state]="{editData:stud}">Edit</button>
       <button class="btn btn-danger" (click)="deleteDetails()">Delete</button>
     </div>
     <div class="card-footer text-muted">

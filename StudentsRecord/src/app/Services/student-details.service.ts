@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Student } from '../../StudentInterface';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +28,10 @@ export class StudentDetailsService {
 
   postData(body:Student){
     return this.http.post<Student>(this.apiUrl,body)
+  }
+
+  editData(body:Student,id:number){
+    return this.http.put<Student>(this.apiUrl+'/edit/'+id,body)
+
   }
 }

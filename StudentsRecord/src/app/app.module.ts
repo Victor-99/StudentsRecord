@@ -10,6 +10,7 @@ import { AddStudentComponent } from './components/add-student/add-student.compon
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ToppersListComponent } from './components/toppers-list/toppers-list.component';
 import { FormsModule } from '@angular/forms';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     StudentDetailsComponent,
     AddStudentComponent,
     NavBarComponent,
-    ToppersListComponent
+    ToppersListComponent,
+    EditFormComponent
   ],
   imports: [
     BrowserModule,

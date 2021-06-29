@@ -1,11 +1,12 @@
-<form #formData="ngForm" (ngSubmit)="onSubmit(formData.value)">
+
+<form #editFormData="ngForm" (ngSubmit)="onEdit(editFormData.value)">
     '<div class="mb-3">
         <label for="RollNo" class="form-group">
             Enter RollNo
         </label>
-        <input required ngModel name="RollNo" #RollNo="ngModel" type="number" id="RollNo" class="form-control">
-        <div class="alert alert-danger" *ngIf="RollNo.touched && RollNo.value<0">Cannot be negative</div>
+        <input required ngModel name="RollNo" #RollNo="ngModel" type="number" id="RollNo" class="form-control" value="dataKnown.RollNo">
         <div class="alert alert-danger" *ngIf="RollNo.touched && !RollNo.valid">Cannot be empty</div>
+        <div class="alert alert-danger" *ngIf="RollNo.touched && RollNo.value <0">Cannot be negative</div>
         
     </div>
 
@@ -13,7 +14,7 @@
         <label for="Name" class="form-group">
             Enter Name
         </label>
-        <input required ngModel name="Name" #Name="ngModel" type="text" id="Name" class="form-control">
+        <input required ngModel name="Name" #Name="ngModel" type="text" id="Name" class="form-control" value="dataKnown.Name">
         <div class="alert alert-danger" *ngIf="Name.touched && !Name.valid">Cannot be empty</div>
     </div>
 
@@ -21,15 +22,16 @@
         <label for="Hindi">
             Enter Hindi marks
         </label>
-        <input required ngModel name="Hindi" #Hindi="ngModel" type="number" id="Hindi" class="form-control">
+        <input required ngModel name="Hindi" #Hindi="ngModel" type="number" id="Hindi" class="form-control" value="dataKnown.Hindi">
         <div class="alert alert-danger" *ngIf="Hindi.touched && !Hindi.valid">Cannot be empty</div>
         <div class="alert alert-danger" *ngIf="Hindi.touched && Hindi.value <0">Cannot be negative</div>
         <div class="alert alert-danger" *ngIf="Hindi.touched  && Hindi.value >100 ">Should be less than 100</div>
 
+
         <label for="English" class="form-group">
             Enter English marks
         </label>
-        <input required ngModel name="English" #English="ngModel" type="number" id="English" class="form-control" min=0 max=100>
+        <input required ngModel name="English" #English="ngModel" type="number" id="English" class="form-control" value="dataKnown.English">
         <div class="alert alert-danger" *ngIf="English.touched && !English.valid">Cannot be empty</div>
         <div class="alert alert-danger" *ngIf="English.touched && English.value <0">Cannot be negative</div>
         <div class="alert alert-danger" *ngIf="English.touched  && English.value >100 ">Should be less than 100</div>
@@ -38,7 +40,7 @@
         <label for="Mathematics"  class="form-group">
             Enter Mathematics marks
         </label>
-        <input required ngModel name="Mathematics" #Mathematics="ngModel" type="number" id="Mathematics" class="form-control" min=0 max=100>
+        <input required ngModel name="Mathematics" #Mathematics="ngModel" type="number" id="Mathematics" class="form-control" value="dataKnown.Mathematics">
         <div class="alert alert-danger" *ngIf="Mathematics.touched && !Mathematics.valid">Cannot be empty</div>
         <div class="alert alert-danger" *ngIf="Mathematics.touched && Mathematics.value <0">Cannot be negative</div>
         <div class="alert alert-danger" *ngIf="Mathematics.touched  && Mathematics.value >100 ">Should be less than 100</div>
@@ -47,7 +49,7 @@
         <label for="Science"  class="form-group">
             Enter Science marks
         </label>
-        <input required ngModel name="Science" type="number" #Science="ngModel" id="Science" class="form-control" min=0 max=100>
+        <input required ngModel name="Science" type="number" #Science="ngModel" id="Science" class="form-control" value="dataKnown.Science">
         <div class="alert alert-danger" *ngIf="Science.touched && !Science.valid">Cannot be empty</div>
         <div class="alert alert-danger" *ngIf="Science.touched && Science.value <0">Cannot be negative</div>
         <div class="alert alert-danger" *ngIf="Science.touched  && Science.value >100 ">Should be less than 100</div>
@@ -56,11 +58,11 @@
         <label for="PhE" class="form-group">
             Enter PhE marks
         </label>
-        <input required ngModel name="PhE" type="number" #PhE="ngModel" id="PhE" class="form-control" min=0 max=100>
+        <input required ngModel name="PhE" type="number" #PhE="ngModel" id="PhE" class="form-control" value="dataKnown.PhE">
         <div class="alert alert-danger" *ngIf="PhE.touched && !PhE.valid">Cannot be empty</div>
         <div class="alert alert-danger" *ngIf="PhE.touched && PhE.value <0">Cannot be negative</div>
         <div class="alert alert-danger" *ngIf="PhE.touched  && PhE.value >100 ">Should be less than 100</div>
 
     </div>
-    <input type="submit" class="btn btn-primary" value="Add">
+    <input type="submit" class="btn btn-primary" value="Edit">
 </form>
