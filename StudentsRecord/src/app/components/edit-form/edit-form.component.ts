@@ -11,6 +11,7 @@ import { Student } from '../../../StudentInterface';
 export class EditFormComponent implements OnInit {
   id:number;
   dataKnown:Student;
+  Test:any;
   constructor(private dataService:StudentDetailsService,private activatedRoute:ActivatedRoute,private router:Router) { }
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params)=>{this.id=Number(params.get("id"))})
@@ -20,7 +21,7 @@ export class EditFormComponent implements OnInit {
     });
     
   }
-  onEdit(value:Student){
+  async onEdit(value:Student){
     console.log(this.dataKnown);
     this.dataService.editData(value,this.id).subscribe(()=>{
       alert("Data edited successfully");
