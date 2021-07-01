@@ -38,9 +38,8 @@ export class StudentDetailsComponent implements OnInit {
       console.log("Getting by Id");
       await this.getService.getByIdAsync(this.x).toPromise().then((student) => { this.studnt = student }).catch(error => {
         alert(error.error.detail);
-        this.calcMarks();
-        console.log(this.studnt.marks);
       })
+      this.calcMarks();
     }
 
   }
@@ -72,7 +71,6 @@ export class StudentDetailsComponent implements OnInit {
       this.studnt.result = this.result[2];
 
     }
-    this.ngOnInit();
   }
 
   changeColor(marks: number) {
