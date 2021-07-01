@@ -6,4 +6,6 @@ export interface Student{
     Mathematics:number;
     Science:number;
     PhE:number;
+    marks?:number;
+    result?:string;
 }

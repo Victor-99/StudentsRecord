@@ -1,12 +1,12 @@
 <h2>Students Details</h2>
 <div class="card text-center">
     <div class="card-header">
-      Name: {{stud.Name}}
+      Name: {{studnt.Name}}
     </div>
     <div class="card-body">
-      <h5 class="card-title">Roll Number: {{stud.RollNo}}</h5>
-      <p class="card-text">Marks Scored: {{marks}}</p>
-      <p class="card-text">Percentage: {{percent}}</p>
+      <h5 class="card-title">Roll Number: {{studnt.RollNo}}</h5>
+      <p class="card-text">Marks Scored: {{studnt.marks}}</p>
+      <p class="card-text">Percentage: {{(studnt.Hindi+studnt.English+studnt.Mathematics+studnt.Science+studnt.PhE)/5}}</p>
       <table class="table table-primary card-text">
         <thead class="table-dark">
           <tr>
@@ -16,39 +16,39 @@
           </tr>
       </thead>
       <tbody class="table-warning">
-          <tr>
+          <tr [ngClass]="changeColor(studnt.Hindi)">
               <td>Hindi</td>
-              <td>{{stud.Hindi}}</td>
+              <td>{{studnt.Hindi}}</td>
               <td>100</td>
           </tr>
-          <tr>
+          <tr [ngClass]="changeColor(studnt.English)">
               <td>English</td>
-              <td>{{stud.English}}</td>
+              <td>{{studnt.English}}</td>
               <td>100</td>
           </tr>
-          <tr>
+          <tr [ngClass]="changeColor(studnt.Mathematics)">
               <td>Mathematics</td>
-              <td>{{stud.Mathematics}}</td>
+              <td>{{studnt.Mathematics}}</td>
               <td>100</td>
           </tr>
-          <tr>
+          <tr [ngClass]="changeColor(studnt.Science)">
               <td>Science</td>
-              <td>{{stud.Science}}</td>
+              <td>{{studnt.Science}}</td>
               <td>100</td>
           </tr>
-          <tr>
+          <tr [ngClass]="changeColor(studnt.PhE)">
               <td>PhE</td>
-              <td>{{stud.PhE}}</td>
+              <td>{{studnt.PhE}}</td>
               <td>100</td>
           </tr>
       </tbody>
     </table>
 
-      <button class="btn btn-primary" editData="stud" [routerLink]="['/edit',stud.RollNo]" [state]="{editData:stud}">Edit</button>
+      <button class="btn btn-primary" editData="studnt" (click)="editDetails(studnt.RollNo)">Edit</button>
       <button class="btn btn-danger" (click)="deleteDetails()">Delete</button>
     </div>
     <div class="card-footer text-muted">
-      Overall Result:
+      Overall Result: {{studnt.result}}
     </div>
 
     

@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { StudentDetailsService } from '../../Services/student-details.service';
 import { Student } from '../../../StudentInterface';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -11,27 +12,79 @@ import { Student } from '../../../StudentInterface';
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.css']
 })
+
+
 export class StudentDetailsComponent implements OnInit {
   x: number;
   marks: number;
   percent: number;
-  stud: Student;
-  resp:any;
-  data:any;
+  studnt: Student;
+  result: string[] = ['Pass', 'Compart', 'Fail'];
+  highlight: string = "";
+
+
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private getService: StudentDetailsService) { }
-  ngOnInit(): void {
+  async ngOnInit() {
+    const prevState = window.history.state;
     this.activatedRoute.paramMap.subscribe((params) => {
       this.x = Number(params.get("id"));
     })
-    this.resp=this.getService.getByIdAsync(this.x);
-      //.subscribe((student) => { this.stud = student }, error => {
-      //  alert(error.error.detail);
-      //})
+    if (prevState.RollNo) {
+      console.log("has Prev state");
+      this.studnt = prevState;
 
-      console.log(this.resp);
-
+    }
+    else {
+      console.log("Getting by Id");
+      await this.getService.getByIdAsync(this.x).toPromise().then((student) => { this.studnt = student }).catch(error => {
+        alert(error.error.detail);
+        this.calcMarks();
+        console.log(this.studnt.marks);
+      })
+    }
 
   }
+  calcMarks() {
+    let resStatus = 0
+    this.studnt.marks = this.studnt.Hindi + this.studnt.English + this.studnt.Mathematics + this.studnt.Science + this.studnt.PhE;
+    if (this.studnt.Hindi < 35) {
+      resStatus += 1;
+    }
+    if (this.studnt.English < 35) {
+      resStatus += 1;
+    }
+    if (this.studnt.Mathematics < 35) {
+      resStatus += 1;
+    }
+    if (this.studnt.Science < 35) {
+      resStatus += 1;
+    }
+    if (this.studnt.PhE < 35) {
+      resStatus += 1;
+    }
+    if (resStatus === 0) {
+      this.studnt.result = this.result[0];
+    }
+    else if (resStatus == 1) {
+      this.studnt.result = this.result[1];
+    }
+    else if (resStatus >= 1) {
+      this.studnt.result = this.result[2];
+
+    }
+    this.ngOnInit();
+  }
+
+  changeColor(marks: number) {
+    if (marks < 35) {
+      this.highlight = "table-danger";
+    }
+    else {
+      this.highlight = "";
+    }
+    return this.highlight;
+  }
+
 
 
   deleteDetails() {
@@ -41,7 +94,9 @@ export class StudentDetailsComponent implements OnInit {
     }, error => {
       alert(error.error.detail);
     });
+  }
 
-
+  editDetails(id: number) {
+    this.router.navigate(['/edit', id]);
   }
 }

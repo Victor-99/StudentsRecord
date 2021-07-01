@@ -10,7 +10,6 @@ import { Student } from '../../StudentInterface';
 })
 export class StudentDetailsService {
 
-  data:any;
   private apiUrl="http://localhost:8000"
 
   constructor(private http:HttpClient) { }
@@ -23,11 +22,8 @@ export class StudentDetailsService {
     return this.http.get<Student>(this.apiUrl+'/'+id)
   }
   
-  async getByIdAsync(id:number){
-    await this.http.get<Student>(this.apiUrl+'/'+id).toPromise().then(res=>{
-      this.data=res;
-    })
-    return this.data
+  getByIdAsync(id:number){
+    return this.http.get<Student>(this.apiUrl+'/'+id)
   }
 
   removeData(id:number){
